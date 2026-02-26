@@ -1,0 +1,34 @@
+# The name of your automation
+name: Hourly-Uptime-Monitor
+
+# Part 1: The Triggers (When should this run?)
+on:
+  push:
+    branches: [ "main" ]  # Run whenever you push code
+  schedule:
+    - cron: '0 * * * *'     # Run every hour automatically
+
+# Part 2: The Jobs (What should it do?)
+jobs:
+  check-sites:
+    runs-on: ubuntu-latest # Use a fresh Linux server provided by GitHub
+    
+    steps:
+      # Step 1: Copy your code from GitHub onto the Linux server
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Step 2: Install Python
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      # Step 3: Install the 'requests' library we used in our script
+      - name: Install dependencies
+        run: pip install requests
+
+      # Step 4: Run the actual script
+      - name: Run Uptime Script
+        run: python monitor.py
+
