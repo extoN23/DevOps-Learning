@@ -9,4 +9,4 @@ def check_site(url):
         print(f"Error: {url} is unreachable!")
 
 check_site("https://google.com")
-check_site("https://this-website-is-fake-123.com")
+check_site("https://this-is-a-fake-site-123456789.com")
