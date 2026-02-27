@@ -46,5 +46,5 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
-          # Replace 'your-username' with your actual Docker Hub username below
-          tags: extoN23/uptime-monitor:latest
+          # Make sure there is NO 'registry:' line unless you use a custom server
+          tags: exton23/uptime-monitor:latest
