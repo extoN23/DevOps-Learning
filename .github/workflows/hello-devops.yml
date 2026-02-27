@@ -4,6 +4,37 @@ on:
   push:
     branches: [ "main" ]
   schedule:
+    - cron: '*/5 * * * *'
+
+jobs:
+  check-sites:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run Uptime Script
+        run: python monitor.py
+
+      - name: Send Discord Alert on Failure
+        if: failure()
+        run: |
+          curl -H "Content-Type: application/json" \
+               -d "{\"content\": \"🚨 **ALERT!** Your Uptime Monitor failed!\"}" \
+               ${{ secrets.DISCORD_WEBHOOK }}name: Hourly-Uptime-Monitor
+
+on:
+  push:
+    branches: [ "main" ]
+  schedule:
     - cron: */5 * * * *'
 
 jobs:
