@@ -47,4 +47,4 @@ jobs:
         with:
           push: true
           # Make sure there is NO 'registry:' line unless you use a custom server
-          tags: exton23/uptime-monitor:latest
+          tags: haruns38/uptime-monitor:latest
