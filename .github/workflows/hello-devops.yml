@@ -47,4 +47,4 @@ jobs:
         with:
           push: true
           # Replace 'your-username' with your actual Docker Hub username below
-          tags: your-username/uptime-monitor:latest
+          tags: extoN23/uptime-monitor:latest
